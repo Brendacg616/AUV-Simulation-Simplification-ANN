@@ -5,6 +5,7 @@ print('path =', pathname)
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 # Custom module imports
 import UndulatoryMotionTorch
@@ -190,6 +191,8 @@ with torch.no_grad():
 end_time = time.time()
 print(f"Simulation Time for {N} steps: {end_time - start_time} seconds")
 
+# Create OutputData directory if it does not exist
+Path(f"{pathname}/OutputData/").mkdir(parents=True, exist_ok=True)
 # Save simulation data in csv files
 np.savetxt(pathname +"/OutputData/step_angle_history.csv", step_angle_history.numpy(), delimiter=",")
 np.savetxt(pathname +"/OutputData/smooth_angle_history.csv", smooth_angle_history.numpy(), delimiter=",")
